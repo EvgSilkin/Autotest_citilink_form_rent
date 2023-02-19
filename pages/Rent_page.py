@@ -90,8 +90,11 @@ class Rent_page(Base):
     #Methods
 
     def open_page(self):
-        self.driver.get(self.url)
-        self.driver.maximize_window()
+        with allure.step(f"Open page on {self.url}"):
+            Logger.add_start_step(method=f"Open page on {self.url}")
+            self.driver.get(self.url)
+            self.driver.maximize_window()
+            Logger.add_end_step(url=self.get_current_url(), method=f"Open page on {self.url}")
     def fill_input_rent_name(self, name):
         with allure.step("Input rent name"):
             Logger.add_start_step(method="Input rent name")

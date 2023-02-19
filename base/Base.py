@@ -1,8 +1,11 @@
 import datetime
 
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait as wait
+
+from utilities.Logger import Logger
 
 
 class Base():
@@ -11,8 +14,11 @@ class Base():
         self.driver = driver;
 
     def open_page(self, url):
-        self.driver.get(url)
-        self.driver.maximize_window()
+        with allure.step(f"Open page on {url}"):
+            Logger.add_start_step(method=f"Open page on {url}")
+            self.driver.get(url)
+            self.driver.maximize_window()
+            Logger.add_end_step(url=self.get_current_url(), method=f"Open page on {url}")
 
     def get_current_url(self):
         return self.driver.current_url
