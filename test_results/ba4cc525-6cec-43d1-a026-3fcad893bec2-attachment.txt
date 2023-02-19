@@ -1,6 +1,0 @@
-
-START TEST
-Нижняя граница поля ввода rent_email не окрашена в красный цвет или Неверное сообщение об ошибке для поля rent_email
-before screen
-screen path screen\screenshot2023.02.19.15.25.28.png
-after screen
