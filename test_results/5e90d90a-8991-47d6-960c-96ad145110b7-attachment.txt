@@ -1,0 +1,6 @@
+Нижняя граница поля ввода rent_name не окрашена в красный цвет или Неверное сообщение об ошибке для поля rent_name
+before screen
+screen path screen\screenshot2023.02.19.15.23.50.png
+after screen
+
+FINISH TEST
