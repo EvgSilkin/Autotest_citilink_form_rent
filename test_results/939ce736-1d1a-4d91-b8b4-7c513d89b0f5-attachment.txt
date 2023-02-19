@@ -1,8 +1,0 @@
-
-START TEST
-Ошибка при проверки поля rent_city
-before screen
-screen path screen\screenshot2023.02.19.09.45.07.png
-after screen
-
-FINISH TEST

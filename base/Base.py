@@ -26,7 +26,8 @@ class Base():
         return wait(self.driver, timeout).until(EC.element_to_be_clickable((By.XPATH, locator)))
     def assert_element_text(self, text, result):
         assert text == result
-
+    def assert_class_contains(self, class_value, sub_str):
+        assert sub_str in class_value
     def assert_url(self, result):
         current_url = self.get_current_url()
         assert current_url == result

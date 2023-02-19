@@ -2,9 +2,6 @@ import allure
 
 from base.Base import Base
 from utilities.Logger import Logger
-from selenium.webdriver.common.by import By
-# from selenium.webdriver.support import expected_conditions as EC
-# from selenium.webdriver.support.wait import WebDriverWait
 
 class Rent_page(Base):
 
@@ -21,32 +18,59 @@ class Rent_page(Base):
     button_less_40_meters = "//label[@for='radio_size1']"
     button_more_150_meters = "//label[@for='radio_size2']"
     input_rent_name = "//input[@name='rent[name]']"
+    wrapper_input_rent_name = "//input[@name='rent[name]']/ancestor::div[contains(@class,'InputBox_has-label')]"
     input_rent_phone = "//input[@name='rent[phone]']"
+    wrapper_input_rent_phone = "//input[@name='rent[phone]']/ancestor::div[contains(@class,'InputBox_has-label')]"
     input_rent_mail = "//input[@name='rent[email]']"
+    wrapper_input_rent_mail = "//input[@name='rent[email]']/ancestor::div[contains(@class,'InputBox_has-label')]"
     input_rent_city = "//input[@name='rent[city]']"
+    wrapper_input_rent_city = "//input[@name='rent[city]']/ancestor::div[contains(@class,'InputBox_has-label')]"
     input_rent_description = "//input[@name='rent[description]']"
     answer_heading = "//h2[@class='answer__heading']"
     form_heading = "//h2[@class='RentFeedback__title']"
     wrapper_button_less_40_meters = "//div[contains(@class, 'feedback-radio-less')]"
     wrapper_button_more_150_meters = "//div[contains(@class, 'feedback-radio-more')]"
 
+    "//input[@name='rent[name]']/ancestor::div[contains(@class,'InputBox_has-label')]//div[@class='InputBox__error']"
+
     #Getters
     def get_button_open_rent_form(self):
         return self.get_element_to_be_clickable_by_xpath(self.button_open_rent_form)
     def get_button_close_rent_form(self):
         return self.get_element_to_be_clickable_by_xpath(self.button_close_rent_form)
+# Rent Name Getters
     def get_input_rent_name(self):
         return self.get_element_to_be_clickable_by_xpath(self.input_rent_name)
+    def get_wrapper_input_rent_name(self):
+        return self.get_element_to_be_clickable_by_xpath(self.wrapper_input_rent_name)
+# Rent Phone Getters
     def get_input_rent_phone(self):
         return self.get_element_to_be_clickable_by_xpath(self.input_rent_phone)
+    def get_wrapper_input_rent_phone(self):
+        return self.get_element_to_be_clickable_by_xpath(self.wrapper_input_rent_phone)
+# Rent Mail Getters
     def get_input_rent_mail(self):
         return self.get_element_to_be_clickable_by_xpath(self.input_rent_mail)
+    def get_wrapper_input_rent_mail(self):
+        return self.get_element_to_be_clickable_by_xpath(self.wrapper_input_rent_mail)
+# Rent City Getters
     def get_input_rent_city(self):
         return self.get_element_to_be_clickable_by_xpath(self.input_rent_city)
+    def get_wrapper_input_rent_city(self):
+        return self.get_element_to_be_clickable_by_xpath(self.wrapper_input_rent_city)
+# Rent Descriptions Getters
     def get_input_rent_description(self):
         return self.get_element_to_be_clickable_by_xpath(self.input_rent_description)
     def get_button_send_application(self):
         return self.get_element_to_be_clickable_by_xpath(self.button_send_application)
+# Other Input Getters
+    def get_errors_input_element(self, input_name):
+        locator_name = f"//input[@name='rent[{input_name}]']/ancestor::div[contains(@class,'InputBox_has-label')]//div[@class='InputBox__error']"
+        return self.get_element_to_be_clickable_by_xpath(locator_name)
+    def get_wrapper_input_element(self, input_name):
+        locator_name = f"//input[@name='rent[{input_name}]']/ancestor::div[contains(@class,'InputBox_has-label')]"
+        return self.get_element_to_be_clickable_by_xpath(locator_name)
+# Marker Getters
     def get_answer_heading(self):
         return self.get_element_to_be_clickable_by_xpath(self.answer_heading)
     def get_form_heading(self):
@@ -55,6 +79,7 @@ class Rent_page(Base):
         return self.get_answer_heading().text
     def get_form_heading_text(self):
         return self.get_form_heading().text
+# Area Getters
     def get_button_less_40_meters(self):
         return self.get_element_to_be_clickable_by_xpath(self.button_less_40_meters)
     def get_wrapper_button_less_40_meters(self):
@@ -67,13 +92,31 @@ class Rent_page(Base):
     #Actions
     def click_button_open_rent_form(self):
         self.get_button_open_rent_form().click()
+    def click_button_send_application(self):
+        with allure.step("Input rent phone"):
+            Logger.add_start_step(method="Click button send application")
+            self.get_button_send_application().click()
+            Logger.add_end_step(url=self.get_current_url(), method="Click button send application")
     def click_button_close_rent_form(self):
         self.get_button_close_rent_form().click()
     def click_get_button_less_40_meters(self):
         self.get_button_less_40_meters().click()
     def click_get_button_more_150_meters(self):
         self.get_button_more_150_meters().click()
-    def switch_input_assert(self, input_name, value):
+    def assert_input_value(self, input_name, value):
+        dict_inputs = {
+            'rent_name': self.get_input_rent_name,
+            'rent_phone': self.get_input_rent_phone,
+            'rent_mail': self.get_input_rent_mail,
+            'rent_city': self.get_input_rent_city,
+            'rent_description': self.get_input_rent_description
+        }
+        input_item = dict_inputs.get(input_name)
+        value_input_item = input_item().get_attribute("value")
+        if input_name == "rent_phone":
+            value_input_item = self.clear_phone_value(value_input_item)
+        assert value == value_input_item
+    def assert_errors_input_value(self, input_name, value):
         dict_inputs = {
             'rent_name': self.get_input_rent_name,
             'rent_phone': self.get_input_rent_phone,
@@ -129,7 +172,7 @@ class Rent_page(Base):
     def send_application(self, text_marker):
         with allure.step("Send application"):
             Logger.add_start_step(method="Send application")
-            self.get_button_send_application().click()
+            self.click_button_send_application()
             self.assert_element_text(text_marker, self.get_answer_heading_text())
             Logger.add_end_step(url=self.get_current_url(), method="Send application")
     def open_rent_form(self, form_marker):
@@ -160,5 +203,19 @@ class Rent_page(Base):
     def get_and_assert_input_value(self, input_name, value):
         with allure.step(f"Get and assert {input_name}-input value"):
             Logger.add_start_step(method=f"Get and assert {input_name}-input value")
-            self.switch_input_assert(input_name, value)
+            self.assert_input_value(input_name, value)
             Logger.add_end_step(url=self.get_current_url(), method=f"Get and assert {input_name}-input value")
+    def assert_errors_input_message(self, input_name, value):
+        with allure.step(f"Assert errors input rent {input_name} message"):
+            Logger.add_start_step(method=f"Assert errors input rent {input_name} message")
+            text_errors_input_element = self.get_errors_input_element(input_name).text
+            self.assert_element_text(text_errors_input_element, value)
+            Logger.add_end_step(url=self.get_current_url(), method=f"Assert errors input rent {input_name} message")
+    def assert_class_contains_str(self, input_name, value):
+        with allure.step(f"Assert class input rent {input_name} contains '{value}'"):
+            Logger.add_start_step(method=f"Assert class input rent {input_name} contains '{value}'")
+            wrapper_input_element = self.get_wrapper_input_element(input_name)
+            class_wrapper_input_element = wrapper_input_element.get_attribute("class")
+            self.assert_class_contains(class_wrapper_input_element, value)
+            Logger.add_end_step(url=self.get_current_url(), method=f"Assert class input rent {input_name} contains '{value}'")
+

@@ -1,10 +1,8 @@
 import time
 import allure
-
 from selenium.common import TimeoutException
 from pages.Rent_page import Rent_page
 from utilities.Logger import Logger
-
 
 # Отправление заявки на сотрудничество, заполнив все поля валидными данными
 @allure.description("test_case_1")
