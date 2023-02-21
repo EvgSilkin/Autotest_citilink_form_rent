@@ -63,7 +63,7 @@ def test_impossibility_to_send_application_leaving_all_fields_empty(driver):
     finally:
         rent_page.screen_page(path_to_screenshot)
         Logger.add_end_step(url=rent_page.get_current_url(),
-                            method="Невозможность отправления заявки на сотрудничество, оставив все поля пустыми")\
+                            method="Невозможность отправления заявки на сотрудничество, оставив все поля пустыми")
 
 # Невозможность отправления заявки на сотрудничество, оставив все обязательные поля пустыми
 @allure.description("test_impossibility_to_send_application_leaving_all_required_fields_empty")
