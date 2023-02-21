@@ -4,86 +4,86 @@ from selenium.common import TimeoutException
 from pages.Rent_page import Rent_page
 from utilities.Logger import Logger
 
-# # Отправление заявки на сотрудничество, заполнив все поля валидными данными
-# @allure.description("test_sending_application_by_filling_all_fields_valid_data")
-# def test_sending_application_by_filling_all_fields_valid_data(driver):
-#     Logger.add_start_step(method="Отправление заявки на сотрудничество, заполнив все поля валидными данными")
-#     path_to_screenshot = "screen\\"
-#     form_marker = "Заявка на сотрудничество"
-#     text_marker = "Спасибо за заявку на сотрудничество"
-#     rent_name = "Иванов Иван Иванович"
-#     rent_phone = "9123456789"
-#     rent_mail = "test@test.ru"
-#     rent_city = "Казань Татарстан"
-#     rent_description = "Цокольный этаж"
-#
-#     rent_page = Rent_page(driver)
-#     rent_page.open_page()
-#     # Шаг 1. Нажать кнопку "Оставить заявку"
-#     rent_page.open_rent_form(form_marker)
-#     # Шаг 2. Ввести в поле "Ваше ФИО*" значение: "Иванов Иван Иванович"
-#     rent_page.fill_input_rent_name(rent_name)
-#     # Шаг 3. Ввести в поле "Контактный номер телефона*" значение: "+79123456789"
-#     rent_page.fill_input_rent_phone(rent_phone)
-#     # Шаг 4. Ввести в поле "Email для ответа*" значение: "test@test.ru"
-#     rent_page.fill_input_rent_mail(rent_mail)
-#     # Шаг 5. Ввести в поле "Введите город и область*" значение: "Казань Татарстан"
-#     rent_page.fill_input_rent_city(rent_city)
-#     # Шаг 6. Ввести в поле "Опишите особенности помещения" значение: "Цокольный этаж"
-#     rent_page.fill_input_rent_description(rent_description)
-#     time.sleep(7)
-#     try:
-#         # Шаг 7. Примечание: Опциональный шаг. Ввода капчи требуется не при каждом оформлении заявки на сотрудничесво.
-#         # Ввести(в ручную) в поле "Слово с картинки*" значенние капчи
-#         # Шаг 8.  Нажать на кнопку "Отправить предложение"
-#         rent_page.send_application(text_marker)
-#     except TimeoutException:
-#         raise TimeoutException("Не найден маркер успешного завершения проверки sending_application_by_filling_all_fields_valid_data")
-#     finally:
-#         rent_page.screen_page(path_to_screenshot)
-#         Logger.add_end_step(url=rent_page.get_current_url(),
-#                             method="Отправление заявки на сотрудничество,"
-#                                    " заполнив все поля валидными данными")
-#
-# # Отправление заявки на сотрудничество, заполнив все обязательные поля валидными данными
-# @allure.description("test_sending_application_by_filling_all_required_fields_valid_data")
-# def test_sending_application_by_filling_all_required_fields_valid_data(driver):
-#     Logger.add_start_step(method="Отправление заявки на сотрудничество, "
-#                                  "заполнив все обязательные поля валидными данными")
-#     path_to_screenshot = "screen\\"
-#     form_marker = "Заявка на сотрудничество"
-#     text_marker = "Спасибо за заявку на сотрудничество"
-#     rent_name = "Иванов Иван Иванович"
-#     rent_phone = "9123456789"
-#     rent_mail = "test@test.ru"
-#     rent_city = "Казань Татарстан"
-#
-#     rent_page = Rent_page(driver)
-#     rent_page.open_page()
-#     # Шаг 1. Нажать кнопку "Оставить заявку"
-#     rent_page.open_rent_form(form_marker)
-#     # Шаг 2. Ввести в поле "Ваше ФИО*" значение: "Иванов Иван Иванович""
-#     rent_page.fill_input_rent_name(rent_name)
-#     # Шаг 3. Ввести в поле "Контактный номер телефона*" значение: "+79123456789""
-#     rent_page.fill_input_rent_phone(rent_phone)
-#     # Шаг 4. Ввести в поле "Email для ответа*" значение: "test@test.ru""
-#     rent_page.fill_input_rent_mail(rent_mail)
-#     # Шаг 5. Ввести в поле "Введите город и область*" значение: "Казань Татарстан""
-#     rent_page.fill_input_rent_city(rent_city)
-#     time.sleep(7)
-#     try:
-#         # Шаг 6. Примечание: Опциональный шаг. Ввода капчи требуется не при каждом оформлении заявки на сотрудничесво.
-#         # Ввести(в ручную) в поле "Слово с картинки*" значенние капчи
-#         # Шаг 7.  Нажать на кнопку "Отправить предложение"
-#         rent_page.send_application(text_marker)
-#     except TimeoutException:
-#         raise TimeoutException("Не найден маркер успешного завершения проверки "
-#                                "sending_application_by_filling_all_required_fields_valid_data")
-#     finally:
-#         rent_page.screen_page(path_to_screenshot)
-#         Logger.add_end_step(url=rent_page.get_current_url(),
-#                             method="Отправление заявки на сотрудничество, "
-#                                    "заполнив все обязательные поля валидными данными")
+# Отправление заявки на сотрудничество, заполнив все поля валидными данными
+@allure.description("test_sending_application_by_filling_all_fields_valid_data")
+def test_sending_application_by_filling_all_fields_valid_data(driver):
+    Logger.add_start_step(method="Отправление заявки на сотрудничество, заполнив все поля валидными данными")
+    path_to_screenshot = "screen\\"
+    form_marker = "Заявка на сотрудничество"
+    text_marker = "Спасибо за заявку на сотрудничество"
+    rent_name = "Иванов Иван Иванович"
+    rent_phone = "9123456789"
+    rent_mail = "test@test.ru"
+    rent_city = "Казань Татарстан"
+    rent_description = "Цокольный этаж"
+
+    rent_page = Rent_page(driver)
+    rent_page.open_page()
+    # Шаг 1. Нажать кнопку "Оставить заявку"
+    rent_page.open_rent_form(form_marker)
+    # Шаг 2. Ввести в поле "Ваше ФИО*" значение: "Иванов Иван Иванович"
+    rent_page.fill_input_rent_name(rent_name)
+    # Шаг 3. Ввести в поле "Контактный номер телефона*" значение: "+79123456789"
+    rent_page.fill_input_rent_phone(rent_phone)
+    # Шаг 4. Ввести в поле "Email для ответа*" значение: "test@test.ru"
+    rent_page.fill_input_rent_mail(rent_mail)
+    # Шаг 5. Ввести в поле "Введите город и область*" значение: "Казань Татарстан"
+    rent_page.fill_input_rent_city(rent_city)
+    # Шаг 6. Ввести в поле "Опишите особенности помещения" значение: "Цокольный этаж"
+    rent_page.fill_input_rent_description(rent_description)
+    time.sleep(7)
+    try:
+        # Шаг 7. Примечание: Опциональный шаг. Ввода капчи требуется не при каждом оформлении заявки на сотрудничесво.
+        # Ввести(в ручную) в поле "Слово с картинки*" значенние капчи
+        # Шаг 8.  Нажать на кнопку "Отправить предложение"
+        rent_page.send_application(text_marker)
+    except TimeoutException:
+        raise TimeoutException("Не найден маркер успешного завершения проверки sending_application_by_filling_all_fields_valid_data")
+    finally:
+        rent_page.screen_page(path_to_screenshot)
+        Logger.add_end_step(url=rent_page.get_current_url(),
+                            method="Отправление заявки на сотрудничество,"
+                                   " заполнив все поля валидными данными")
+
+# Отправление заявки на сотрудничество, заполнив все обязательные поля валидными данными
+@allure.description("test_sending_application_by_filling_all_required_fields_valid_data")
+def test_sending_application_by_filling_all_required_fields_valid_data(driver):
+    Logger.add_start_step(method="Отправление заявки на сотрудничество, "
+                                 "заполнив все обязательные поля валидными данными")
+    path_to_screenshot = "screen\\"
+    form_marker = "Заявка на сотрудничество"
+    text_marker = "Спасибо за заявку на сотрудничество"
+    rent_name = "Иванов Иван Иванович"
+    rent_phone = "9123456789"
+    rent_mail = "test@test.ru"
+    rent_city = "Казань Татарстан"
+
+    rent_page = Rent_page(driver)
+    rent_page.open_page()
+    # Шаг 1. Нажать кнопку "Оставить заявку"
+    rent_page.open_rent_form(form_marker)
+    # Шаг 2. Ввести в поле "Ваше ФИО*" значение: "Иванов Иван Иванович""
+    rent_page.fill_input_rent_name(rent_name)
+    # Шаг 3. Ввести в поле "Контактный номер телефона*" значение: "+79123456789""
+    rent_page.fill_input_rent_phone(rent_phone)
+    # Шаг 4. Ввести в поле "Email для ответа*" значение: "test@test.ru""
+    rent_page.fill_input_rent_mail(rent_mail)
+    # Шаг 5. Ввести в поле "Введите город и область*" значение: "Казань Татарстан""
+    rent_page.fill_input_rent_city(rent_city)
+    time.sleep(7)
+    try:
+        # Шаг 6. Примечание: Опциональный шаг. Ввода капчи требуется не при каждом оформлении заявки на сотрудничесво.
+        # Ввести(в ручную) в поле "Слово с картинки*" значенние капчи
+        # Шаг 7.  Нажать на кнопку "Отправить предложение"
+        rent_page.send_application(text_marker)
+    except TimeoutException:
+        raise TimeoutException("Не найден маркер успешного завершения проверки "
+                               "sending_application_by_filling_all_required_fields_valid_data")
+    finally:
+        rent_page.screen_page(path_to_screenshot)
+        Logger.add_end_step(url=rent_page.get_current_url(),
+                            method="Отправление заявки на сотрудничество, "
+                                   "заполнив все обязательные поля валидными данными")
 
 # Сохранение заполненных данных в форме, после изменения выбранной площади
 @allure.description("test_saving_completed_data_in_form_after_changing_area")
