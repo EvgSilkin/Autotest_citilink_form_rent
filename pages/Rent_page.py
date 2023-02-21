@@ -70,6 +70,9 @@ class Rent_page(Base):
     def get_wrapper_input_element(self, input_name):
         locator_name = f"//input[@name='rent[{input_name}]']/ancestor::div[contains(@class,'InputBox_has-label')]"
         return self.get_element_to_be_clickable_by_xpath(locator_name)
+    def get_input_by_inner_name(self, input_name):
+        locator_name = f"//input[@name='rent[{input_name}]']"
+        return self.get_element_to_be_clickable_by_xpath(locator_name)
 # Marker Getters
     def get_answer_heading(self):
         return self.get_element_to_be_clickable_by_xpath(self.answer_heading)
@@ -104,17 +107,11 @@ class Rent_page(Base):
     def click_get_button_more_150_meters(self):
         self.get_button_more_150_meters().click()
     def assert_input_value(self, input_name, value):
-        dict_inputs = {
-            'rent_name': self.get_input_rent_name,
-            'rent_phone': self.get_input_rent_phone,
-            'rent_mail': self.get_input_rent_mail,
-            'rent_city': self.get_input_rent_city,
-            'rent_description': self.get_input_rent_description
-        }
-        input_item = dict_inputs.get(input_name)
-        value_input_item = input_item().get_attribute("value")
-        if input_name == "rent_phone":
+        input_item = self.get_input_by_inner_name(input_name)
+        value_input_item = input_item.get_attribute("value")
+        if input_name == "phone":
             value_input_item = self.clear_phone_value(value_input_item)
+        print("$$$@@@", value, value_input_item)
         assert value == value_input_item
     def assert_errors_input_value(self, input_name, value):
         dict_inputs = {
