@@ -5,8 +5,8 @@ from pages.Rent_page import Rent_page
 from utilities.Logger import Logger
 
 # Отправление заявки на сотрудничество, заполнив все поля валидными данными
-@allure.description("test_case_1")
-def test_case_1(driver):
+@allure.description("sending_application_by_filling_all_fields_valid_data")
+def sending_application_by_filling_all_fields_valid_data(driver):
     Logger.add_start_step(method="Отправление заявки на сотрудничество, заполнив все поля валидными данными")
     path_to_screenshot = "screen\\"
     form_marker = "Заявка на сотрудничество"
@@ -38,7 +38,7 @@ def test_case_1(driver):
         # Шаг 8.  Нажать на кнопку "Отправить предложение"
         rent_page.send_application(text_marker)
     except TimeoutException:
-        raise TimeoutException("Не найден маркер успешного завершения проверки test_case_1")
+        raise TimeoutException("Не найден маркер успешного завершения проверки sending_application_by_filling_all_fields_valid_data")
     finally:
         rent_page.screen_page(path_to_screenshot)
         Logger.add_end_step(url=rent_page.get_current_url(),
@@ -46,8 +46,8 @@ def test_case_1(driver):
                                    " заполнив все поля валидными данными")
 
 # Отправление заявки на сотрудничество, заполнив все обязательные поля валидными данными
-@allure.description("test_case_2")
-def test_case_2(driver):
+@allure.description("sending_application_by_filling_all_required_fields_valid_data")
+def sending_application_by_filling_all_required_fields_valid_data(driver):
     Logger.add_start_step(method="Отправление заявки на сотрудничество, "
                                  "заполнив все обязательные поля валидными данными")
     path_to_screenshot = "screen\\"
@@ -77,7 +77,8 @@ def test_case_2(driver):
         # Шаг 7.  Нажать на кнопку "Отправить предложение"
         rent_page.send_application(text_marker)
     except TimeoutException:
-        raise TimeoutException("Не найден маркер успешного завершения проверки test_case_2")
+        raise TimeoutException("Не найден маркер успешного завершения проверки "
+                               "sending_application_by_filling_all_required_fields_valid_data")
     finally:
         rent_page.screen_page(path_to_screenshot)
         Logger.add_end_step(url=rent_page.get_current_url(),
@@ -85,8 +86,8 @@ def test_case_2(driver):
                                    "заполнив все обязательные поля валидными данными")
 
 # Сохранение заполненных данных в форме, после изменения выбранной площади
-@allure.description("test_case_48")
-def test_case_48(driver):
+@allure.description("saving_completed_data_in_form_after_changing_area")
+def saving_completed_data_in_form_after_changing_area(driver):
     Logger.add_start_step(method="Сохранение заполненных данных в форме, после изменения выбранной площади")
     path_to_screenshot = "screen\\"
     value_for_assert = "RentFeedback____inner feedback-radio feedback-radio-less active"
@@ -123,7 +124,7 @@ def test_case_48(driver):
         rent_page.get_and_assert_input_value(current_assert_input, rent_phone)
         # ОР 3:  Сохранились заполненные значения для поля: "Введите город и область*"
         current_assert_input = "rent_city"
-        rent_page.get_and_assert_input_value(current_assert_input, rent_city+"test")
+        rent_page.get_and_assert_input_value(current_assert_input, rent_city)
     except AssertionError:
         print(f"Ошибка при проверки поля {current_assert_input}")
         raise AssertionError(f"Ошибка при проверки поля {current_assert_input}")
@@ -132,8 +133,8 @@ def test_case_48(driver):
         Logger.add_end_step(url=rent_page.get_current_url(), method="Сохранение заполненных данных в форме,"
                                                                   "после изменения выбранной площади")
 # Сохранение заполненных данных в форме, после возврата на изначальную площадь
-@allure.description("test_case_49")
-def test_case_49(driver):
+@allure.description("saving_completed_data_in_form_after_returning_to_area")
+def saving_completed_data_in_form_after_returning_to_area(driver):
     Logger.add_start_step(method="Сохранение заполненных данных в форме, после возврата на изначальную площадь")
     path_to_screenshot = "screen\\"
     value_for_assert_less_40 = "RentFeedback____inner feedback-radio feedback-radio-less active"
@@ -188,8 +189,9 @@ def test_case_49(driver):
         Logger.add_end_step(url=rent_page.get_current_url(), method="Сохранение заполненных данных в форме, "
                                                                     "после возврата на изначальную площадь")
 # Сохранение заполненных данных в форме, после закрытия формы
-@allure.description("test_case_50")
-def test_case_50(driver):
+# saving_completed_data_in_form_after_closing_form
+@allure.description("saving_completed_data_in_form_after_closing_form")
+def saving_completed_data_in_form_after_closing_form(driver):
     Logger.add_start_step(method="Сохранение заполненных данных в форме, после закрытия формы")
     path_to_screenshot = "screen\\"
     form_marker = "Заявка на сотрудничество"
