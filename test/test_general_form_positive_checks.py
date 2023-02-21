@@ -35,7 +35,7 @@ def test_sending_application_by_filling_all_fields_valid_data(driver):
     try:
         # Шаг 7. Примечание: Опциональный шаг. Ввода капчи требуется не при каждом оформлении заявки на сотрудничесво.
         # Ввести(в ручную) в поле "Слово с картинки*" значенние капчи
-        # Шаг 8.  Нажать на кнопку "Отправить предложение"
+        # Шаг 8. Нажать на кнопку "Отправить предложение"
         rent_page.send_application(text_marker)
     except TimeoutException:
         raise TimeoutException("Не найден маркер успешного завершения проверки sending_application_by_filling_all_fields_valid_data")
