@@ -111,20 +111,6 @@ class Rent_page(Base):
         value_input_item = input_item.get_attribute("value")
         if input_name == "phone":
             value_input_item = self.clear_phone_value(value_input_item)
-        print("$$$@@@", value, value_input_item)
-        assert value == value_input_item
-    def assert_errors_input_value(self, input_name, value):
-        dict_inputs = {
-            'rent_name': self.get_input_rent_name,
-            'rent_phone': self.get_input_rent_phone,
-            'rent_mail': self.get_input_rent_mail,
-            'rent_city': self.get_input_rent_city,
-            'rent_description': self.get_input_rent_description
-        }
-        input_item = dict_inputs.get(input_name)
-        value_input_item = input_item().get_attribute("value")
-        if input_name == "rent_phone":
-            value_input_item = self.clear_phone_value(value_input_item)
         assert value == value_input_item
 
     #Methods
