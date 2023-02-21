@@ -7,8 +7,8 @@ from pages.Rent_page import Rent_page
 from utilities.Logger import Logger
 
 # Невозможность отправления заявки на сотрудничество, оставив все поля пустыми
-@allure.description("test_case_3")
-def test_case_3(driver):
+@allure.description("impossibility_to_send_application_leaving_all_fields_empty")
+def impossibility_to_send_application_leaving_all_fields_empty(driver):
     Logger.add_start_step(method="Невозможность отправления заявки на сотрудничество, оставив все поля пустыми")
     path_to_screenshot = "screen\\"
 
@@ -66,8 +66,8 @@ def test_case_3(driver):
                             method="Невозможность отправления заявки на сотрудничество, оставив все поля пустыми")\
 
 # Невозможность отправления заявки на сотрудничество, оставив все обязательные поля пустыми
-@allure.description("test_case_4")
-def test_case_4(driver):
+@allure.description("impossibility_to_send_application_leaving_all_required_fields_empty")
+def impossibility_to_send_application_leaving_all_required_fields_empty(driver):
     Logger.add_start_step(method="Невозможность отправления заявки на сотрудничество, оставив все обязательные поля пустыми")
     path_to_screenshot = "screen\\"
 
